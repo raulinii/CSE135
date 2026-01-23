@@ -94,3 +94,62 @@ footer {
   font-size: 0.9rem;
   color: #666;
 }
+
+
+.about-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.about-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2rem;
+}
+
+
+.name-bubble {
+  background: white;
+  color: #111;
+  font-size: 3rem;
+  font-weight: 800;
+  padding: 2rem 3.5rem;
+  border-radius: 999px;
+  text-align: center;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.25),
+    inset 0 2px 6px rgba(255, 255, 255, 0.7);
+
+  letter-spacing: 1px;
+}
+
+
+.about-card {
+  background: white;
+  max-width: 700px;
+  padding: 2.5rem 3rem;
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.25);
+
+  text-align: center;
+}
+
+.about-card h2 {
+  margin-bottom: 1.2rem;
+  font-size: 2rem;
+}
+
+.about-card p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
