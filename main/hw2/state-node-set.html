@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>State Demo (Node)</title>
+</head>
+<body>
+
+<h1>State Demo (Node)</h1>
+
+<form action="/cgi-bin/state-node.js" method="GET">
+  <input type="hidden" name="action" value="set">
+
+  Value to save:
+  <input type="text" name="value" required>
+
+  <br><br>
+  <button type="submit">Save State</button>
+</form>
+
+<br>
+<a href="/cgi-bin/state-node.js?action=get">View Saved State</a><br>
+<a href="/cgi-bin/state-node.js?action=clear">Clear State</a>
+
+</body>
+</html>
