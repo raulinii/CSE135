@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>State Demo (Python) - View</title>
+</head>
+<body>
+
+<h1>Saved State</h1>
+
+<pre id="output">Loading...</pre>
+
+<p>
+  <a href="/cgi-bin/state-python.py?action=clear">Clear State</a>
+</p>
+
+<p>
+  <a href="/hw2/state-python-set.html">Back to Set Page</a>
+</p>
+
+<script>
+fetch("/cgi-bin/state-python.py?action=view")
+  .then(res => res.text())
+  .then(text => {
+    document.getElementById("output").textContent = text;
+  })
+  .catch(() => {
+    document.getElementById("output").textContent = "Error loading state.";
+  });
+</script>
+
+<noscript>
+  <p><strong>JavaScript is disabled.</strong></p>
+  <p>
+    <a href="/cgi-bin/state-python.py?action=view">
+      Click here to view saved state
+    </a>
+  </p>
+</noscript>
+
+</body>
+</html>
