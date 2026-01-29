@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Echo Test Form</title>
+  <title>Echo Form</title>
 </head>
 <body>
 
-<h1>Echo Test Form</h1>
+<h1>Echo Form</h1>
 
-<form action="/cgi-bin/echo-python.py" method="GET">
+<form id="echoForm" action="/cgi-bin/echo-python.py" method="GET">
+
   
   <!-- Language -->
   <label>
@@ -61,6 +62,63 @@
 <noscript>
   <p><strong>Note:</strong> JavaScript is disabled. The form will submit using GET.</p>
 </noscript>
+<h2>Echo Output</h2>
+<pre id="output"></pre>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("echoForm");
+  const output = document.getElementById("output");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault(); // JS takes over
+
+    // Read form values
+    const language = form.language.value;
+    const method = form.method.value;
+    const encoding = form.encoding.value;
+    const message = form.message.value;
+
+    // Map language → endpoint
+    let url = "";
+    if (language === "python") url = "/cgi-bin/echo-python.py";
+    if (language === "php") url = "/cgi-bin/echo-php.php";
+    if (language === "node") url = "/cgi-bin/echo-node.js";
+
+    // Build request options
+    const options = {
+      method: method,
+      headers: {}
+    };
+
+    // Encode body if needed
+    if (method !== "GET") {
+      if (encoding === "application/json") {
+        options.headers["Content-Type"] = "application/json";
+        options.body = JSON.stringify({ message: message });
+      } else {
+        options.headers["Content-Type"] = "application/x-www-form-urlencoded";
+        options.body = `message=${encodeURIComponent(message)}`;
+      }
+    } else {
+      // GET → put params in URL
+      url += `?message=${encodeURIComponent(message)}`;
+    }
+
+    try {
+      // Send request
+      const response = await fetch(url, options);
+      const text = await response.text();
+
+      // Display echoed output
+      output.textContent = text;
+    } catch (err) {
+      output.textContent = "Error sending request.";
+    }
+  });
+});
+</script>
+
 
 </body>
 </html>
