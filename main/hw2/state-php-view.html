@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>State Demo (PHP) - View</title>
+</head>
+<body>
+
+<h1>Saved State (PHP)</h1>
+
+<pre id="output">Loading...</pre>
+
+<p>
+  <a href="/cgi-bin/state-php.php?action=clear">Clear State</a>
+</p>
+
+<p>
+  <a href="/hw2/state-php-set.html">Back to Set Page</a>
+</p>
+
+<script>
+fetch("/cgi-bin/state-php.php?action=get")
+  .then(res => res.text())
+  .then(text => {
+    document.getElementById("output").textContent = text;
+  })
+  .catch(() => {
+    document.getElementById("output").textContent = "Error loading state.";
+  });
+</script>
+
+<noscript>
+  <p><strong>JavaScript is disabled.</strong></p>
+  <p>
+    <a href="/cgi-bin/state-php.php?action=get">
+      Click here to view saved state
+    </a>
+  </p>
+</noscript>
+
+</body>
+</html>
