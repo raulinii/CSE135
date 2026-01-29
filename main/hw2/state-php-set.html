@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>State Demo (PHP) - Set</title>
+  <title>State Demo (PHP)</title>
 </head>
 <body>
 
 <h1>State Demo (PHP)</h1>
 
-<form action="/cgi-bin/state-php.php?action=set" method="GET">
-  <label>
-    Value to save:
-    <input type="text" name="value" required>
-  </label>
-  <br><br>
+<form action="/cgi-bin/state-php.php" method="GET">
+  <input type="hidden" name="action" value="set">
 
+  Value to save:
+  <input type="text" name="value" required>
+
+  <br><br>
   <button type="submit">Save State</button>
 </form>
 
-<p>
-  <a href="/hw2/state-php-view.html">View Saved State</a>
-</p>
+<br>
+<a href="/cgi-bin/state-php.php?action=get">View Saved State</a>
 
 </body>
 </html>
