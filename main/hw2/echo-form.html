@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Echo Test Form</title>
+</head>
+<body>
+
+<h1>Echo Test Form</h1>
+
+<form action="/cgi-bin/echo-python.py" method="GET">
+  
+  <!-- Language -->
+  <label>
+    Language:
+    <select name="language">
+      <option value="python">Python</option>
+      <option value="php">PHP</option>
+      <option value="node">Node</option>
+    </select>
+  </label>
+  <br><br>
+
+  <!-- Method -->
+  <label>
+    Method:
+    <select name="method">
+      <option value="GET">GET</option>
+      <option value="POST">POST</option>
+      <option value="PUT">PUT</option>
+      <option value="DELETE">DELETE</option>
+    </select>
+  </label>
+  <br><br>
+
+  <!-- Encoding -->
+  <label>
+    Encoding:
+    <select name="encoding">
+      <option value="application/x-www-form-urlencoded">
+        application/x-www-form-urlencoded
+      </option>
+      <option value="application/json">
+        application/json
+      </option>
+    </select>
+  </label>
+  <br><br>
+
+  <!-- Fields -->
+  <label>
+    Message:
+    <input type="text" name="message">
+  </label>
+  <br><br>
+
+  <button type="submit">Send</button>
+
+</form>
+
+<noscript>
+  <p><strong>Note:</strong> JavaScript is disabled. The form will submit using GET.</p>
+</noscript>
+
+</body>
+</html>
