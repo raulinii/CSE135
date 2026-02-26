@@ -1,11 +1,17 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-
+const mysql = require('mysql2/promise');
 const app = express();
 const PORT = 3005;
 const LOG_FILE = path.join(__dirname, 'analytics.jsonl');
 
+const db = mysql.createPool({
+  host: 'localhost',
+  user: 'collector_user',
+  password: 'collector_pass',
+  database: 'collector'
+});
 // CORS headers — required when collector and endpoint are on different origins
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -35,13 +41,25 @@ app.post('/collect', (req, res) => {
 
   // Append to JSON Lines file
   const line = JSON.stringify(payload) + '\n';
-  fs.appendFile(LOG_FILE, line, (err) => {
-    if (err) {
-      console.error('Write error:', err);
-      return res.sendStatus(500);
-    }
-    res.sendStatus(204); // No Content — success, nothing to return
-  });
+  (async () => {
+  try {
+    await db.execute(
+      `INSERT INTO events (session_id, event_type, url, payload)
+       VALUES (?, ?, ?, ?)`,
+      [
+        payload.session || null,
+        payload.type,
+        payload.url,
+        JSON.stringify(payload)
+      ]
+    );
+
+    res.sendStatus(204);
+  } catch (err) {
+    console.error('DB insert error:', err);
+    res.sendStatus(500);
+  }
+})();
 });
 
 app.use(express.static(__dirname));

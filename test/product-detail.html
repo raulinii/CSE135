@@ -6,6 +6,19 @@
     <title>Product Details - Wrecked Tech</title>
     <script src="js/upgrade-products.js"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="/js/consent.js"></script>
+    <script src="/collector/collector.js"></script>
+    <script src="/collector/ext-clicks.js"></script>
+    <script src="/collector/ext-scroll.js"></script>
+    <script>
+    collector.init({
+        endpoint: 'https://collector.raulc.xyz/collect',
+        debug: false
+    });
+
+  collector.use(ClickTracker);
+  collector.use(ScrollTracker);
+</script>
 </head>
 <body>
     <header style="position: fixed; top: 0; left: 0; right: 0; background: white; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
