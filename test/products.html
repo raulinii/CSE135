@@ -12,14 +12,16 @@
 <script src="https://collector.raulc.xyz/ext-scroll.js"></script>
 
 <script>
-  collector.init({
-    endpoint: 'https://collector.raulc.xyz/collect',
-    debug: false
-  });
-</script>
+collector.init({
+  endpoint: 'https://collector.raulc.xyz/collect',
+  debug: true,
+  respectConsent: false,   // ← TEMPORARY
+  detectBots: false
+});
 
-  collector.use(ClickTracker);
-  collector.use(ScrollTracker);
+collector.use(ClickTracker);
+collector.use(ScrollTracker);
+</script>
 </script>
     <style>
         * + * > div:nth-child(odd) ~ div:not(:last-child) .product-item:hover::before {
