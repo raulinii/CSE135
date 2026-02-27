@@ -14,7 +14,8 @@
 <script>
 collector.init({
   endpoint: 'https://collector.raulc.xyz/collect',
-  debug: false
+  debug: false,
+  respectConsent: false
 });
 collector.use(ClickTracker);
 collector.use(ScrollTracker);
