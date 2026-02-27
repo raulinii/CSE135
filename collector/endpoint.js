@@ -21,22 +21,6 @@ const db = mysql.createPool({
 // ================================
 
 // CORS (collector + test site are different origins)
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-
-  // allow only your test site
-  if (origin === 'https://test.raulc.xyz') {
-    res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Vary', 'Origin');
-  }
-
-  res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') return res.sendStatus(204);
-  next();
-});
 
 app.use(express.json());
 
