@@ -152,6 +152,12 @@ app.put('/api/events/:id', async (req, res) => {
   }
 });
 
+// routes/static.js
+app.get('/api/static', async (req, res) => {
+  const [rows] = await db.query('SELECT * FROM static');
+  res.json(rows);
+});
+
 // ================================
 // Static (optional)
 // ================================
