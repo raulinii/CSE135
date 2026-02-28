@@ -152,10 +152,16 @@ app.put('/api/events/:id', async (req, res) => {
   }
 });
 
-// routes/static.js
 app.get('/api/static', async (req, res) => {
-  const [rows] = await db.query('SELECT * FROM static');
-  res.json(rows);
+  try {
+    const [rows] = await db.query(
+      'SELECT id, session_id, event_type, url, server_timestamp FROM events ORDER BY id DESC LIMIT 50'
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err.toString());
+  }
 });
 
 // ================================
