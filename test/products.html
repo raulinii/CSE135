@@ -12,13 +12,16 @@
 <script src="https://collector.raulc.xyz/ext-scroll.js"></script>
 
 <script>
-collector.init({
-  endpoint: 'https://collector.raulc.xyz/collect',
-  debug: false,
-  respectConsent: false
-});
-collector.use(ClickTracker);
-collector.use(ScrollTracker);
+if (ConsentManager.check()) {
+  collector.init({
+    endpoint: 'https://collector.raulc.xyz/collect',
+    debug: false,
+    respectConsent: true
+  });
+
+  collector.use(ClickTracker);
+  collector.use(ScrollTracker);
+}
 </script>
 </script>
     <style>
